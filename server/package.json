@@ -4,12 +4,18 @@
   "private": true,
   "description": "Server-side code for bitcoin exchange",
   "author": "Scott Logic Ltd",
-  "dependencies": {},
+  "dependencies": {
+    "moment": "^2.22.2"
+  },
   "devDependencies": {
     "jest": "^22.3.0"
   },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
   }
 }
