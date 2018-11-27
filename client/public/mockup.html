@@ -1,27 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bitcoin Exchange</title>
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        body { margin-top: 50px; }
-    </style>
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Bitcoin Exchange</a>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body class="bg-dark">
+    <header>
+      <nav class="navbar navbar-dark navbar-expand-md">
+        <a href="#" class="navbar-brand">Bitcoin Exchange</a>
+        <button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navLinks"
+          aria-label="Toggle Navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a href="#home" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link">About</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="#signup" class="nav-link">
+                <i class="fas fa-user-plus"></i> Sign up
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#login" class="nav-link"
+                ><i class="fas fa-sign-in-alt"></i> Login</a
+              >
+            </li>
+          </ul>
         </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="row">
-        <h1>Mockup goes here</h1>
-    </div>
-</div>
-</body>
+      </nav>
+    </header>
+
+    <section id="summary">
+      <div class="flex-container">
+        <div class="flex-row border d-flex header">
+          <div class="col-3 flex-item p-0">
+            <button
+              id="btc-btn"
+              class="btn btn-secondary dropdown-toggle rounded-0 m-0"
+              type="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fab fa-bitcoin"></i> BTC-GBP
+            </button>
+            <div class="dropdown-menu bg-dark">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div role="separator" class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </div>
+          <div class="col-9 flex-item header"><p>TEXT</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="main" class="flex-container">
+      <div class="flex-row border d-flex">
+        <div id="account-view" class="col-3">
+          <div class="flex-row border d-flex">
+            <div class="col-12">
+              <div class="flex-row border d-flex justify-content-center">
+                <div class="flex-item"><p>Start trading...</p></div>
+              </div>
+              <div class="flex-row border d-flex justify-content-center">
+                <div class="flex-item">
+                  <button type="button" class="btn btn-info">
+                    Get started
+                  </button>
+                </div>
+              </div>
+              <div class="flex-row border d-flex">
+                <p class="header">Order Form</p>
+              </div>
+              <div class="flex-row border d-flex"><form action="#sign-up"></form></div>
+            </div>
+          </div>
+        </div>
+        <div id="trade-view" class="col-9 p-0">
+          <div class="flex-row border d-flex">
+            <div id="order-book-header" class="col-4 header">
+              <nav
+                class="navbar navbar-dark navbar-expand-md"
+                id="order-book-nav"
+              >
+                <a href="#" class="navbar-brand">Order Book</a>
+                <div id="order-book-links" class="collapse navbar-collapse">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a href="#book" class="nav-link">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#history" class="nav-link">Trade History</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+            <div id="price-chart-header" class="col-8 flex-item header">
+              <p>Price charts</p>
+            </div>
+          </div>
+          <div class="flex-row border d-flex">
+            <div class="col-4 flex-item">
+              <p class="graph-view">Market stuff...</p>
+            </div>
+            <div id="main-graph" class="col-8 flex-item">
+              <p class="graph-view">Main graph here</p>
+            </div>
+          </div>
+          <div class="flex-row border d-flex">
+            <div class="col-12 header"><p>Open Orders</p></div>
+          </div>
+          <div class="flex-row border d-flex graph-view">
+            <div class="col-12 flex-item">
+              <p>TABLE HERE....</p>
+              <!--
+                <table
+                  id="dtBasicExample"
+                  class="table table-striped table-bordered"
+                  cellspacing="0"
+                  width="100%"
+                >
+                  <thead></thead>
+                  <tbody></tbody>
+                </table>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"
+    ></script>
+  </body>
 </html>
