@@ -11,12 +11,10 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
-    <!-- Bootstrap core CSS -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css"
       rel="stylesheet"
@@ -60,13 +58,13 @@
       </nav>
     </header>
 
-    <section id="summary">
+    <section id="summary-section">
       <div class="flex-container">
-        <div class="flex-row border d-flex header">
-          <div class="col-3 flex-item p-0">
+        <div class="flex-row d-flex header">
+          <div class="col-3 flex-item no-padding">
             <button
               id="btc-btn"
-              class="btn btn-secondary dropdown-toggle rounded-0 m-0"
+              class="btn btn-secondary dropdown-toggle rounded-0 no-margin"
               type="button"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -82,42 +80,42 @@
               <a class="dropdown-item" href="#">Separated link</a>
             </div>
           </div>
-          <div class="col-9 flex-item header"><p>TEXT</p></div>
+          <div id="summary" class="col-9 flex-item header"><p>TEXT</p></div>
         </div>
       </div>
     </section>
 
     <section id="main" class="flex-container">
-      <div class="flex-row border d-flex">
+      <div class="flex-row d-flex">
         <div id="account-view" class="col-3">
-          <div class="flex-row border d-flex">
+          <div class="flex-row d-flex">
             <div class="col-12">
-              <div class="flex-row border d-flex justify-content-center">
+              <div class="flex-row d-flex justify-content-center">
                 <div class="flex-item"><p>Start trading...</p></div>
               </div>
-              <div class="flex-row border d-flex justify-content-center">
+              <div class="flex-row d-flex justify-content-center">
                 <div class="flex-item">
                   <button type="button" class="btn btn-info">
                     Get started
                   </button>
                 </div>
               </div>
-              <div class="flex-row border d-flex">
+              <div id="order-form" class="flex-row d-flex">
                 <p class="header">Order Form</p>
               </div>
-              <div class="flex-row border d-flex"><form action="#sign-up"></form></div>
+              <div class="flex-row d-flex"><form action="#sign-up"></form></div>
             </div>
           </div>
         </div>
-        <div id="trade-view" class="col-9 p-0">
+        <div id="trade-view" class="col-9 no-padding">
           <div class="flex-row border d-flex">
             <div id="order-book-header" class="col-4 header">
               <nav
-                class="navbar navbar-dark navbar-expand-md"
                 id="order-book-nav"
+                class="navbar navbar-dark navbar-expand no-padding"
               >
                 <a href="#" class="navbar-brand">Order Book</a>
-                <div id="order-book-links" class="collapse navbar-collapse">
+                <div id="order-book-links">
                   <ul class="navbar-nav">
                     <li class="nav-item active">
                       <a href="#book" class="nav-link">Orders</a>
