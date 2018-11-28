@@ -20,6 +20,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="currency.css" />
   </head>
   <body class="bg-dark">
     <header>
@@ -34,7 +35,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-between">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav multi-select">
             <li class="nav-item active">
               <a href="#home" class="nav-link">Home</a>
             </li>
@@ -60,7 +61,7 @@
 
     <section id="summary-section">
       <div class="flex-container">
-        <div class="flex-row d-flex header">
+        <div class="flex-row d-flex display-4 ">
           <div class="col-3 flex-item no-padding">
             <button
               id="btc-btn"
@@ -80,15 +81,15 @@
               <a class="dropdown-item" href="#">Separated link</a>
             </div>
           </div>
-          <div id="summary" class="col-9 flex-item header"><p>TEXT</p></div>
+          <div id="summary" class="col-9 flex-item display-4 "><p>TEXT</p></div>
         </div>
       </div>
     </section>
 
-    <section id="main" class="flex-container">
+    <section id="main" class="flex-container text-center">
       <div class="flex-row d-flex">
         <div id="account-view" class="col-3">
-          <div class="flex-row d-flex">
+          <div class="flex-row d-flex section py-5">
             <div class="col-12">
               <div class="flex-row d-flex justify-content-center">
                 <div class="flex-item"><p>Start trading...</p></div>
@@ -100,23 +101,83 @@
                   </button>
                 </div>
               </div>
-              <div id="order-form" class="flex-row d-flex">
-                <p class="header">Order Form</p>
-              </div>
-              <div class="flex-row d-flex"><form action="#sign-up"></form></div>
             </div>
+          </div>
+          <div class="flex-row d-flex flex-container display-4 section">
+              <p>Order Form</p>
+          </div>
+          <div class="flex-row d-flex justify-content-center mt-3">
+            <div id="buy-sell-btns">
+              <button
+                type="button"
+                class="btn mr-0 py-1 px-5 active"
+                href="#buy"
+              >
+                BUY
+              </button>
+              <button type="button" class="btn ml-0 py-1 px-5" href="#sell">
+                SELL
+              </button>
+            </div>
+          </div>
+          <div class="flex-row d-flex justify-content-center mt-3">
+            <nav class="navbar navbar-dark navbar-expand no-padding">
+              <div id="order-form-links">
+                <ul class="navbar-nav multi-select">
+                  <li class="nav-item active">
+                    <a href="#market" class="nav-link">Market</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#limit" class="nav-link">Limit</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#stop" class="nav-link">Stop</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div class="flex-row d-flex justify-content-center text-left mt-3 mb-3">
+            <form action="#sign-up">
+              <label for="purchase-amount">Amount</label>
+              <div class="input-group rounded">
+                <div
+                  class="input-group-addon currency-symbol flex-container align-self-center"
+                >
+                  £
+                </div>
+                <input
+                  type="text"
+                  class="form-control currency-amount"
+                  id="purchase-amount"
+                  placeholder="0.00"
+                />
+                <div class="input-group-addon currency-addon">
+                  <select class="currency-selector">
+                    <option data-symbol="£" data-placeholder="0.00" selected
+                      >GBP</option
+                    >
+                    <option data-symbol="€" data-placeholder="0.00">EUR</option>
+                    <option data-symbol="$" data-placeholder="0.00">USD</option>
+                    <option data-symbol="¥" data-placeholder="0">JPY</option>
+                    <option data-symbol="$" data-placeholder="0.00">CAD</option>
+                    <option data-symbol="$" data-placeholder="0.00">AUD</option>
+                  </select>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
         <div id="trade-view" class="col-9 no-padding">
           <div class="flex-row border d-flex">
-            <div id="order-book-header" class="col-4 header">
+            <div id="order-book-header" class="col-4">
               <nav
                 id="order-book-nav"
                 class="navbar navbar-dark navbar-expand no-padding"
               >
                 <a href="#" class="navbar-brand">Order Book</a>
                 <div id="order-book-links">
-                  <ul class="navbar-nav">
+                  <ul class="navbar-nav multi-select">
                     <li class="nav-item active">
                       <a href="#book" class="nav-link">Orders</a>
                     </li>
@@ -127,7 +188,7 @@
                 </div>
               </nav>
             </div>
-            <div id="price-chart-header" class="col-8 flex-item header">
+            <div id="price-chart-" class="col-8 flex-item display-4  align-self-center">
               <p>Price charts</p>
             </div>
           </div>
@@ -140,7 +201,7 @@
             </div>
           </div>
           <div class="flex-row border d-flex">
-            <div class="col-12 header"><p>Open Orders</p></div>
+            <div class="col-12 display-4 "><p>Open Orders</p></div>
           </div>
           <div class="flex-row border d-flex graph-view">
             <div class="col-12 flex-item">
@@ -182,5 +243,33 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"
     ></script>
+    <!-- Button colour JavaScript -->
+    <script type="text/javascript">
+      $("#buy-sell-btns button").on("click", function() {
+        $(this)
+          .siblings()
+          .removeClass("active");
+        $(this).addClass("active");
+      });
+      $(".navbar-nav.multi-select li").on("click", function() {
+        $(this)
+          .siblings()
+          .removeClass("active");
+        $(this).addClass("active");
+      });
+    </script>
+    <!-- Currency Selecor JavaScript -->
+    <script type="text/javascript">
+      function updateSymbol(e) {
+        var selected = $(".currency-selector option:selected");
+        $(".currency-symbol").text(selected.data("symbol"));
+        $(".currency-amount").prop("placeholder", selected.data("placeholder"));
+        $(".currency-addon-fixed").text(selected.text());
+      }
+
+      $(".currency-selector").on("change", updateSymbol);
+
+      updateSymbol();
+    </script>
   </body>
 </html>
