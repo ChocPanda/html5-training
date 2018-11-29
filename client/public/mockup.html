@@ -21,6 +21,7 @@
     />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="currency.css" />
+    <link rel="icon" href="http://example.com/favicon.png" />
   </head>
   <body class="bg-dark">
     <header>
@@ -39,7 +40,7 @@
         <div class="collapse navbar-collapse justify-content-between">
           <ul class="navbar-nav multi-select">
             <li class="nav-item active">
-              <a href="#home" class="nav-link">Home</a>
+              <a href="#account" class="nav-link">Account</a>
             </li>
             <li class="nav-item">
               <a href="#about" class="nav-link">About</a>
@@ -202,7 +203,7 @@
             </nav>
           </div>
           <div class="flex-row d-flex justify-content-center text-left my-3">
-            <form action="#sign-up">
+            <form>
               <label for="purchase-amount">Amount</label>
               <div class="input-group rounded">
                 <div
@@ -222,11 +223,31 @@
                   GBP
                 </div>
               </div>
-              <hr />
-              <button id="order-btn" type="button" class="btn">
-                Place <span class="order-type">buy</span> order
-              </button>
+              <hr color="slategrey" />
             </form>
+          </div>
+          <div class="flex-row d-flex justify-content-center text-left">
+            <div class="flex-item col-3"><p>Fee ≈</p></div>
+            <div class="flex-item col-9 text-right">
+              <p>
+                <span class="currency-symbol">£</span>
+                <span class="currency-amount">0.00</span>
+              </p>
+            </div>
+          </div>
+          <div class="flex-row d-flex justify-content-center text-left">
+            <div class="flex-item col-3"><p>Total ≈</p></div>
+            <div class="flex-item col-9 text-right">
+              <p>
+                <span class="currency-symbol text-right">£</span>
+                <span class="currency-amount text-right">0.00</span>
+              </p>
+            </div>
+          </div>
+          <div class="flex-row d-flex justify-content-center text-left mt-5">
+            <button id="order-btn" type="button" class="btn">
+              Place <span class="order-type">buy</span> order
+            </button>
           </div>
         </div>
         <div id="trade-view" class="col-9 no-padding">
@@ -250,7 +271,7 @@
               </nav>
             </div>
           </div>
-          <div class="flex-row bottom-border d-flex align-items-center">
+          <div class="flex-row bottom-border d-flex align-items-center mt-4">
             <div class="col-6 flex-item">
               <p class="display-4">
                 Open <span class="buy-indicated">buy</span> orders
@@ -269,7 +290,7 @@
                 <tbody></tbody>
               </table>
             </div>
-            <div id="orders-sell" class="col-6 flex-item">
+            <div class="col-6 flex-item">
               <p class="display-4">
                 Open <span class="sell-indicated">sell</span> orders
               </p>
