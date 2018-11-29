@@ -25,7 +25,9 @@
   <body class="bg-dark">
     <header>
       <nav class="navbar navbar-dark navbar-expand-md">
-        <a href="#" class="navbar-brand">Bitcoin Exchange</a>
+        <a href="#" class="navbar-brand"
+          ><i class="fab fa-bitcoin mr-2"></i>Bitcoin Exchange</a
+        >
         <button
           class="navbar-toggler"
           data-toggle="collapse"
@@ -61,7 +63,7 @@
 
     <section id="summary-section">
       <div class="flex-container">
-        <div class="flex-row d-flex display-4 ">
+        <div class="flex-row d-flex">
           <div class="col-3 flex-item no-padding">
             <button
               id="btc-btn"
@@ -73,15 +75,69 @@
             >
               <i class="fab fa-bitcoin"></i> BTC-GBP
             </button>
-            <div class="dropdown-menu bg-dark">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
+            <div
+              class="dropdown-menu currency-selector bg-dark border rounded-0"
+            >
+              <a
+                class="dropdown-item currency-option"
+                data-symbol="£"
+                data-placeholder="0.00"
+                data-code="GBP"
+                href="#BTC-GBP"
+              >
+                <i class="fab fa-bitcoin"></i> BTC-GBP</a
+              >
+              <a
+                class="dropdown-item currency-option"
+                data-symbol="€"
+                data-placeholder="0.00"
+                data-code="EUR"
+                href="#BTC-EUR"
+              >
+                <i class="fab fa-bitcoin"></i> BTC-EUR</a
+              >
+              <a
+                class="dropdown-item currency-option"
+                data-symbol="$"
+                data-placeholder="0.00"
+                data-code="USD"
+                href="#BTC-USD"
+                ><i class="fab fa-bitcoin"></i> BTC-USD</a
+              >
+              <a
+                class="dropdown-item currency-option"
+                data-symbol="¥"
+                data-placeholder="0"
+                data-code="JPY"
+                href="#BTC-JPY"
+                ><i class="fab fa-bitcoin"></i> BTC-JPY</a
+              >
+              <a
+                class="dropdown-item currency-option"
+                data-symbol="$"
+                data-placeholder="0.00"
+                data-code="CAD"
+                href="#BTC-CAD"
+                ><i class="fab fa-bitcoin"></i> BTC-CAD</a
+              >
+              <a
+                class="dropdown-item currency-option"
+                data-symbol="$"
+                data-placeholder="0.00"
+                data-code="AUD"
+                href="#BTC-AUD"
+                ><i class="fab fa-bitcoin"></i> BTC-AUD</a
+              >
             </div>
           </div>
-          <div id="summary" class="col-9 flex-item display-4 "><p>TEXT</p></div>
+          <div id="summary" class="col-9 d-flex section align-items-center">
+            <div class="flex-item">
+              <p class="display-4">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+                optio mollitia quia officia.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -103,19 +159,27 @@
               </div>
             </div>
           </div>
-          <div class="flex-row d-flex flex-container display-4 section">
-              <p>Order Form</p>
+          <div class="flex-row d-flex section">
+            <p class="display-4">Order Form</p>
           </div>
           <div class="flex-row d-flex justify-content-center mt-3">
             <div id="buy-sell-btns">
               <button
+                id="buy-form-btn"
                 type="button"
-                class="btn mr-0 py-1 px-5 active"
+                data-order-type="buy"
+                class="btn mr-0 py-1 px-5"
                 href="#buy"
               >
                 BUY
               </button>
-              <button type="button" class="btn ml-0 py-1 px-5" href="#sell">
+              <button
+                id="sell-form-btn"
+                type="button"
+                data-order-type="sell"
+                class="btn ml-0 py-1 px-5"
+                href="#sell"
+              >
                 SELL
               </button>
             </div>
@@ -137,12 +201,12 @@
               </div>
             </nav>
           </div>
-          <div class="flex-row d-flex justify-content-center text-left mt-3 mb-3">
+          <div class="flex-row d-flex justify-content-center text-left my-3">
             <form action="#sign-up">
               <label for="purchase-amount">Amount</label>
               <div class="input-group rounded">
                 <div
-                  class="input-group-addon currency-symbol flex-container align-self-center"
+                  class="input-group-addon currency-symbol align-self-center"
                 >
                   £
                 </div>
@@ -152,25 +216,22 @@
                   id="purchase-amount"
                   placeholder="0.00"
                 />
-                <div class="input-group-addon currency-addon">
-                  <select class="currency-selector">
-                    <option data-symbol="£" data-placeholder="0.00" selected
-                      >GBP</option
-                    >
-                    <option data-symbol="€" data-placeholder="0.00">EUR</option>
-                    <option data-symbol="$" data-placeholder="0.00">USD</option>
-                    <option data-symbol="¥" data-placeholder="0">JPY</option>
-                    <option data-symbol="$" data-placeholder="0.00">CAD</option>
-                    <option data-symbol="$" data-placeholder="0.00">AUD</option>
-                  </select>
+                <div
+                  class="input-group-addon currency-addon-fixed currency-code align-self-center"
+                >
+                  GBP
                 </div>
               </div>
+              <hr />
+              <button id="order-btn" type="button" class="btn">
+                Place <span class="order-type">buy</span> order
+              </button>
             </form>
           </div>
         </div>
         <div id="trade-view" class="col-9 no-padding">
-          <div class="flex-row border d-flex">
-            <div id="order-book-header" class="col-4">
+          <div class="flex-row bottom-border d-flex align-items-center">
+            <div id="order-book-header" class="col-12">
               <nav
                 id="order-book-nav"
                 class="navbar navbar-dark navbar-expand no-padding"
@@ -188,35 +249,92 @@
                 </div>
               </nav>
             </div>
-            <div id="price-chart-" class="col-8 flex-item display-4  align-self-center">
-              <p>Price charts</p>
+          </div>
+          <div class="flex-row bottom-border d-flex align-items-center">
+            <div class="col-6 flex-item">
+              <p class="display-4">
+                Open <span class="buy-indicated">buy</span> orders
+              </p>
+              <table
+                id="buy-orders-table"
+                ,
+                class="table table-striped"
+                ,
+                width="100%"
+              >
+                <thead>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div id="orders-sell" class="col-6 flex-item">
+              <p class="display-4">
+                Open <span class="sell-indicated">sell</span> orders
+              </p>
+              <table
+                id="sell-orders-table"
+                ,
+                class="table table-striped"
+                ,
+                width="100%"
+              >
+                <thead>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </thead>
+                <tbody></tbody>
+              </table>
             </div>
           </div>
-          <div class="flex-row border d-flex">
-            <div class="col-4 flex-item">
-              <p class="graph-view">Market stuff...</p>
-            </div>
-            <div id="main-graph" class="col-8 flex-item">
-              <p class="graph-view">Main graph here</p>
-            </div>
+          <div class="flex-row bottom-border d-flex">
+            <div class="col-12"><p class="display-4">Your Orders</p></div>
           </div>
-          <div class="flex-row border d-flex">
-            <div class="col-12 display-4 "><p>Open Orders</p></div>
-          </div>
-          <div class="flex-row border d-flex graph-view">
+          <div class="flex-row d-flex">
             <div class="col-12 flex-item">
-              <p>TABLE HERE....</p>
-              <!--
-                <table
-                  id="dtBasicExample"
-                  class="table table-striped table-bordered"
-                  cellspacing="0"
-                  width="100%"
-                >
-                  <thead></thead>
-                  <tbody></tbody>
-                </table>
-              -->
+              <table
+                id="account-orders-table"
+                ,
+                class="table table-striped"
+                ,
+                width="100%"
+              >
+                <thead>
+                  <th>Side</th>
+                  <th>Size</th>
+                  <th>Filled (BTC)</th>
+                  <th>Price (<span class="currency-code">GBP</span>)</th>
+                  <th>Fee (<span class="currency-code">GBP</span>)</th>
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>BUY</td>
+                    <td>Big</td>
+                    <td>Loads init</td>
+                    <td>Serious cash</td>
+                    <td>Meh...</td>
+                    <td>Sorted!</td>
+                  </tr>
+                  <tr>
+                    <td>BUY</td>
+                    <td>Big</td>
+                    <td>Loads init</td>
+                    <td>Serious cash</td>
+                    <td>Meh...</td>
+                    <td>Sorted!</td>
+                  </tr>
+                  <tr>
+                    <td>BUY</td>
+                    <td>Big</td>
+                    <td>Loads init</td>
+                    <td>Serious cash</td>
+                    <td>Meh...</td>
+                    <td>Sorted!</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -228,21 +346,25 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
     ></script>
+
     <!-- Bootstrap tooltips -->
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
     ></script>
+
     <!-- Bootstrap core JavaScript -->
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"
     ></script>
+
     <!-- MDB core JavaScript -->
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"
     ></script>
+
     <!-- Button colour JavaScript -->
     <script type="text/javascript">
       $("#buy-sell-btns button").on("click", function() {
@@ -250,7 +372,26 @@
           .siblings()
           .removeClass("active");
         $(this).addClass("active");
+        $("#order-btn").addClass(`${this.getAttribute("data-order-type")}-btn`);
+
+        $(this)
+          .siblings()
+          .each(function() {
+            $("#order-btn").removeClass(
+              `${this.getAttribute("data-order-type")}-btn`
+            );
+          });
+        $("#order-btn .order-type").text(
+          `${this.getAttribute("data-order-type")}`
+        );
       });
+
+      $("#buy-form-btn").addClass("active");
+      $("#order-btn").addClass("buy-btn");
+    </script>
+
+    <!-- Nav bar selection colours Javascript -->
+    <script type="text/javascript">
       $(".navbar-nav.multi-select li").on("click", function() {
         $(this)
           .siblings()
@@ -258,18 +399,43 @@
         $(this).addClass("active");
       });
     </script>
-    <!-- Currency Selecor JavaScript -->
+
+    <!-- Currency Selector JavaScript -->
     <script type="text/javascript">
-      function updateSymbol(e) {
-        var selected = $(".currency-selector option:selected");
-        $(".currency-symbol").text(selected.data("symbol"));
-        $(".currency-amount").prop("placeholder", selected.data("placeholder"));
-        $(".currency-addon-fixed").text(selected.text());
+      function updateSymbol() {
+        $(".currency-symbol").text(this.getAttribute("data-symbol"));
+        $(".currency-amount").prop(
+          "placeholder",
+          this.getAttribute("data-placeholder")
+        );
+        $(".currency-code").text(this.getAttribute("data-code"));
+        $("#btc-btn").html(this.innerHTML);
       }
 
-      $(".currency-selector").on("change", updateSymbol);
-
-      updateSymbol();
+      $(".currency-option").on("click", updateSymbol);
     </script>
+
+    <!-- Table caption JavaScript -->
+    <script type="text/javascript">
+      function updateTableCaption(tableId) {
+        return () => {
+          if ($(`#${tableId} tr`).has($("td")).length) {
+            $(`#${tableId} caption`).remove();
+          } else {
+            $(
+              '<caption class="text-center">No orders to show.</caption>'
+            ).appendTo(`#${tableId}`);
+          }
+        };
+      }
+
+      $("table").each(function() {
+        const updateFunc = updateTableCaption(this.id);
+        $(this.id).on("change", updateFunc);
+        updateFunc();
+      });
+    </script>
+
+    <script type="text/javascript"></script>
   </body>
 </html>
