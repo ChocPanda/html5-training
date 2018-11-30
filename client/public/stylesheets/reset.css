@@ -39,7 +39,7 @@
   border-bottom: 1px solid #dee2e6;
 }
 
-#summary-section .flex-container,
+section .flex-container,
 #account-view .flex-row.section,
 header {
   border-bottom: 1px solid #dee2e6;
@@ -55,14 +55,8 @@ header {
 }
 
 .currency-symbol {
-  position: relative;
-  height: 100%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
   border: 0;
   box-shadow: none;
-  vertical-align: middle;
-  font-family: inherit;
   color: white;
 }
 

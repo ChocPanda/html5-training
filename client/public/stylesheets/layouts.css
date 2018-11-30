@@ -10,6 +10,18 @@ p {
   width: 100%;
 }
 
+.currency-symbol {
+  position: relative;
+  height: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  vertical-align: middle;
+}
+
+input {
+  margin-bottom: 1.5rem;
+}
+
 #trade-view,
 .currency-addon-fixed {
   text-align: center;

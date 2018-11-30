@@ -144,7 +144,7 @@
       </div>
     </section>
 
-    <section id="main" class="flex-container text-center">
+    <section class="flex-container text-center">
       <div class="flex-row d-flex">
         <div id="account-view" class="col-3">
           <div class="flex-row d-flex section py-5">
@@ -204,8 +204,16 @@
             </nav>
           </div>
           <div class="flex-row d-flex justify-content-center text-left my-3">
-            <form>
-              <label for="purchase-amount">Amount</label>
+            <form id="order-form" action="javascript:placeOrder();">
+              <label for="quantity">Quantity</label>
+              <input
+                type="text"
+                class="form-control currency-amount"
+                id="quantity"
+                placeholder="0"
+                required
+              />
+              <label for="price">Price</label>
               <div class="input-group rounded">
                 <div
                   class="input-group-addon currency-symbol align-self-center"
@@ -215,8 +223,9 @@
                 <input
                   type="text"
                   class="form-control currency-amount"
-                  id="purchase-amount"
+                  id="price"
                   placeholder="0.00"
+                  required
                 />
                 <div
                   class="input-group-addon currency-addon-fixed currency-code align-self-center"
@@ -225,30 +234,32 @@
                 </div>
               </div>
               <hr color="slategrey" />
+              <div class="flex-row d-flex justify-content-center text-left">
+                <div class="flex-item col-4"><p>Fee ≈</p></div>
+                <div class="flex-item col-8 text-right">
+                  <p>
+                    <span class="currency-symbol">£</span>
+                    <span class="currency-amount">0.00</span>
+                  </p>
+                </div>
+              </div>
+              <div class="flex-row d-flex justify-content-center text-left">
+                <div class="flex-item col-4"><p>Total ≈</p></div>
+                <div class="flex-item col-8 text-right">
+                  <p>
+                    <span class="currency-symbol text-right">£</span>
+                    <span class="currency-amount text-right">0.00</span>
+                  </p>
+                </div>
+              </div>
+              <div
+                class="flex-row d-flex justify-content-center text-left mt-5"
+              >
+                <button id="order-btn" type="button" class="btn">
+                  Place <span class="order-type">buy</span> order
+                </button>
+              </div>
             </form>
-          </div>
-          <div class="flex-row d-flex justify-content-center text-left">
-            <div class="flex-item col-3"><p>Fee ≈</p></div>
-            <div class="flex-item col-9 text-right">
-              <p>
-                <span class="currency-symbol">£</span>
-                <span class="currency-amount">0.00</span>
-              </p>
-            </div>
-          </div>
-          <div class="flex-row d-flex justify-content-center text-left">
-            <div class="flex-item col-3"><p>Total ≈</p></div>
-            <div class="flex-item col-9 text-right">
-              <p>
-                <span class="currency-symbol text-right">£</span>
-                <span class="currency-amount text-right">0.00</span>
-              </p>
-            </div>
-          </div>
-          <div class="flex-row d-flex justify-content-center text-left mt-5">
-            <button id="order-btn" type="button" class="btn">
-              Place <span class="order-type">buy</span> order
-            </button>
           </div>
         </div>
         <div id="trade-view" class="col-9 no-padding">
@@ -279,14 +290,14 @@
               </p>
               <table
                 id="buy-orders-table"
-                ,
                 class="table table-striped"
-                ,
                 width="100%"
               >
                 <thead>
-                  <th>Price</th>
-                  <th>Quantity</th>
+                  <tr>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                  </tr>
                 </thead>
                 <tbody></tbody>
               </table>
@@ -297,14 +308,14 @@
               </p>
               <table
                 id="sell-orders-table"
-                ,
                 class="table table-striped"
-                ,
                 width="100%"
               >
                 <thead>
-                  <th>Price</th>
-                  <th>Quantity</th>
+                  <tr>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                  </tr>
                 </thead>
                 <tbody></tbody>
               </table>
@@ -317,18 +328,18 @@
             <div class="col-12 flex-item">
               <table
                 id="account-orders-table"
-                ,
                 class="table table-striped"
-                ,
                 width="100%"
               >
                 <thead>
-                  <th>Side</th>
-                  <th>Size</th>
-                  <th>Filled (BTC)</th>
-                  <th>Price (<span class="currency-code">GBP</span>)</th>
-                  <th>Fee (<span class="currency-code">GBP</span>)</th>
-                  <th>Status</th>
+                  <tr>
+                    <th>Side</th>
+                    <th>Size</th>
+                    <th>Filled (BTC)</th>
+                    <th>Price (<span class="currency-code">GBP</span>)</th>
+                    <th>Fee (<span class="currency-code">GBP</span>)</th>
+                    <th>Status</th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr>

@@ -38,6 +38,10 @@ table.table td {
   font-weight: 300;
 }
 
+.currency-symbol {
+  font-family: inherit;
+}
+
 #account-view .btn {
   font-weight: 500;
 }
