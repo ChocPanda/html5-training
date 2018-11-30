@@ -204,12 +204,12 @@
             </nav>
           </div>
           <div class="flex-row d-flex justify-content-center text-left my-3">
-            <form id="order-form" action="javascript:placeOrder();">
+            <form name="order-form" id="order-form" action="javascript:placeOrder();">
               <label for="quantity">Quantity</label>
               <input
                 type="text"
                 class="form-control currency-amount"
-                id="quantity"
+                name="quantity"
                 placeholder="0"
                 required
               />
@@ -223,7 +223,7 @@
                 <input
                   type="text"
                   class="form-control currency-amount"
-                  id="price"
+                  name="price"
                   placeholder="0.00"
                   required
                 />
@@ -255,7 +255,7 @@
               <div
                 class="flex-row d-flex justify-content-center text-left mt-5"
               >
-                <button id="order-btn" type="button" class="btn">
+                <button id="order-btn" type="submit" class="btn">
                   Place <span class="order-type">buy</span> order
                 </button>
               </div>

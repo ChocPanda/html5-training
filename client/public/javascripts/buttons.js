@@ -20,8 +20,9 @@ const Action = {
   SELL: 2
 };
 
-function placeOrder() {
-  const formData = new FormData($("#order-form"));
+function placeOrder(e) {
+
+  var formData = new FormData($("#order-form")[0]);
   formData.append("accountId", "1");
 
   if ($("#order-btn").hasClass("buy-btn")) {
@@ -43,7 +44,7 @@ function placeOrder() {
   // $.post("order", formData.serialize());
 }
 
-$("#order-btn").on("click", placeOrder);
+// $("#order-btn").on("click", placeOrder);
 $("#buy-sell-btns button").on("click", toggleOrderType);
 
 $("#order-btn").addClass("buy-btn");
