@@ -1,7 +1,7 @@
 'use strict';
 
-const { _, createTrade, Action } = require("./order");
-const { sortBuyers, sortSellers } = require("./orderComparator")
+const { _, createTrade, Action } = require("../orders/order");
+const { sortBuyers, sortSellers } = require("../orders/orderComparator")
 
 class Matcher {
     constructor(existingOrders = []) {

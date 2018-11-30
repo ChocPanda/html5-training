@@ -1,0 +1,43 @@
+table caption,
+p,
+label,
+.navbar,
+table {
+  color: #dee2e6;
+  font-weight: 150;
+  margin: 0;
+}
+
+p.display-4 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+caption,
+table.table td {
+  font-size: 0.75rem;
+}
+
+#btc-btn {
+  font-size: 1.3rem;
+}
+
+#order-book-links a {
+  font-size: 0.75em;
+  font-weight: 100;
+}
+
+.currency-addon-fixed {
+  width: 4em;
+  position: relative;
+  color: white;
+}
+
+.currency-option {
+  color: white;
+  font-weight: 300;
+}
+
+#account-view .btn {
+  font-weight: 500;
+}

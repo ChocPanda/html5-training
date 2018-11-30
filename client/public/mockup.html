@@ -19,9 +19,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="currency.css" />
-    <link rel="icon" href="http://example.com/favicon.png" />
+    <link rel="stylesheet" href="stylesheets/reset.css" />
+    <link rel="stylesheet" href="stylesheets/layouts.css" />
+    <link rel="stylesheet" href="stylesheets/typography.css" />
+    <link rel="icon" href="imgs/favicon.ico" />
   </head>
   <body class="bg-dark">
     <header>
@@ -387,76 +388,15 @@
     ></script>
 
     <!-- Button colour JavaScript -->
-    <script type="text/javascript">
-      $("#buy-sell-btns button").on("click", function() {
-        $(this)
-          .siblings()
-          .removeClass("active");
-        $(this).addClass("active");
-        $("#order-btn").addClass(`${this.getAttribute("data-order-type")}-btn`);
-
-        $(this)
-          .siblings()
-          .each(function() {
-            $("#order-btn").removeClass(
-              `${this.getAttribute("data-order-type")}-btn`
-            );
-          });
-        $("#order-btn .order-type").text(
-          `${this.getAttribute("data-order-type")}`
-        );
-      });
-
-      $("#buy-form-btn").addClass("active");
-      $("#order-btn").addClass("buy-btn");
-    </script>
+    <script type="text/javascript" src="javascripts/buttons.js"></script>
 
     <!-- Nav bar selection colours Javascript -->
-    <script type="text/javascript">
-      $(".navbar-nav.multi-select li").on("click", function() {
-        $(this)
-          .siblings()
-          .removeClass("active");
-        $(this).addClass("active");
-      });
-    </script>
+    <script type="text/javascript" src="javascripts/navbar.js"></script>
 
     <!-- Currency Selector JavaScript -->
-    <script type="text/javascript">
-      function updateSymbol() {
-        $(".currency-symbol").text(this.getAttribute("data-symbol"));
-        $(".currency-amount").prop(
-          "placeholder",
-          this.getAttribute("data-placeholder")
-        );
-        $(".currency-code").text(this.getAttribute("data-code"));
-        $("#btc-btn").html(this.innerHTML);
-      }
-
-      $(".currency-option").on("click", updateSymbol);
-    </script>
+    <script type="text/javascript" src="javascripts/currency.js"></script>
 
     <!-- Table caption JavaScript -->
-    <script type="text/javascript">
-      function updateTableCaption(tableId) {
-        return () => {
-          if ($(`#${tableId} tr`).has($("td")).length) {
-            $(`#${tableId} caption`).remove();
-          } else {
-            $(
-              '<caption class="text-center">No orders to show.</caption>'
-            ).appendTo(`#${tableId}`);
-          }
-        };
-      }
-
-      $("table").each(function() {
-        const updateFunc = updateTableCaption(this.id);
-        $(this.id).on("change", updateFunc);
-        updateFunc();
-      });
-    </script>
-
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src="javascripts/tableCaption.js"></script>
   </body>
 </html>

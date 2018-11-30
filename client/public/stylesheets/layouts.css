@@ -1,0 +1,41 @@
+html,
+body {
+  min-width: 1300px;
+  height: 100%;
+}
+
+#btc-btn,
+p {
+  height: 100%;
+  width: 100%;
+}
+
+#trade-view,
+.currency-addon-fixed {
+  text-align: center;
+}
+
+.currency-amount {
+  text-align: right;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+table.table td {
+  padding-top: 0.2rem !important;
+  padding-bottom: 0.2rem !important;
+}
+
+.nav-link,
+th {
+  padding-top: 0.3em !important;
+  padding-bottom: 0.3em !important;
+  padding-left: 1.5em !important;
+  padding-right: 1.5em !important;
+}

@@ -1,6 +1,6 @@
 'user strict'
 
-function sortSellers(sellerA, sellerB) {
+const compareSellers = (sellerA, sellerB) => {
     return (sellerA.price < sellerB.price ? 1 :
             sellerA.price > sellerB.price ? -1 :
             sellerA.orderTime < sellerB.orderTime ? 1 :
@@ -8,7 +8,7 @@ function sortSellers(sellerA, sellerB) {
             0)
 };
 
-function sortBuyers(buyerA, buyerB) {
+const compareBuyers = (buyerA, buyerB) => {
     return (buyerA.price > buyerB.price ? 1 :
             buyerA.price < buyerB.price ? -1 :
             buyerA.orderTime < buyerB.orderTime ? 1 :
@@ -17,6 +17,6 @@ function sortBuyers(buyerA, buyerB) {
 };
 
 module.exports = {
-    sortSellers,
-    sortBuyers
+    compareSellers,
+    compareBuyers
 }

@@ -1,0 +1,75 @@
+.navbar {
+  box-shadow: none;
+}
+
+.multi-select .nav-item {
+  color: slategrey;
+  border-bottom: 3px solid slategrey;
+  transition: 500ms;
+}
+
+.nav-item.active {
+  color: #dee2e6;
+  border-bottom: 3px solid #dee2e6;
+}
+
+#buy-form-btn.active,
+#order-btn.buy-btn {
+  background-color: rgb(68, 190, 36) !important;
+}
+
+#sell-form-btn.active,
+#order-btn.sell-btn {
+  background-color: rgb(239, 79, 27) !important;
+}
+
+.buy-indicated {
+  color: rgb(68, 190, 36);
+}
+
+.sell-indicated {
+  color: rgb(239, 79, 27);
+}
+
+#account-view button {
+  transition: 500ms;
+}
+
+.bottom-border {
+  border-bottom: 1px solid #dee2e6;
+}
+
+#summary-section .flex-container,
+#account-view .flex-row.section,
+header {
+  border-bottom: 1px solid #dee2e6;
+}
+
+#summary,
+#trade-view {
+  border-left: 1px solid #dee2e6;
+}
+
+#market-view {
+  border-right: 1px solid #dee2e6;
+}
+
+.currency-symbol {
+  position: relative;
+  height: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border: 0;
+  box-shadow: none;
+  vertical-align: middle;
+  font-family: inherit;
+  color: white;
+}
+
+input,
+.input-group,
+#account-view .btn {
+  background-color: slategrey;
+  border: none;
+  box-shadow: none;
+}
