@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="stylesheets/reset.css" />
     <link rel="stylesheet" href="stylesheets/layouts.css" />
     <link rel="stylesheet" href="stylesheets/typography.css" />
+    <link rel="stylesheet" href="stylesheets/forms.css" />
     <link rel="icon" href="imgs/favicon.ico" />
   </head>
   <body class="bg-dark">
@@ -207,11 +208,12 @@
             <form name="order-form" id="order-form" action="javascript:placeOrder();">
               <label for="quantity">Quantity</label>
               <input
-                type="text"
+                type="number"
                 class="form-control currency-amount"
                 name="quantity"
                 placeholder="0"
                 required
+                min="1"
               />
               <label for="price">Price</label>
               <div class="input-group rounded">
@@ -221,10 +223,11 @@
                   £
                 </div>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control currency-amount"
                   name="price"
                   placeholder="0.00"
+                  min="1"
                   required
                 />
                 <div

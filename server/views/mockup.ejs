@@ -1,0 +1,252 @@
+<% include partials/header %>
+<% include partials/nav %>
+
+<section id="summary-section">
+  <div class="flex-container">
+    <div class="flex-row d-flex">
+      <div class="col-3 flex-item no-padding">
+        <button
+          id="btc-btn"
+          class="btn btn-secondary dropdown-toggle rounded-0 no-margin"
+          type="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="fab fa-bitcoin"></i> BTC-GBP
+        </button>
+        <div
+          class="dropdown-menu currency-selector bg-dark border rounded-0"
+        >
+          <a
+            class="dropdown-item currency-option"
+            data-symbol="£"
+            data-placeholder="0.00"
+            data-code="GBP"
+            href="#BTC-GBP"
+          >
+            <i class="fab fa-bitcoin"></i> BTC-GBP</a
+          >
+          <a
+            class="dropdown-item currency-option"
+            data-symbol="€"
+            data-placeholder="0.00"
+            data-code="EUR"
+            href="#BTC-EUR"
+          >
+            <i class="fab fa-bitcoin"></i> BTC-EUR</a
+          >
+          <a
+            class="dropdown-item currency-option"
+            data-symbol="$"
+            data-placeholder="0.00"
+            data-code="USD"
+            href="#BTC-USD"
+            ><i class="fab fa-bitcoin"></i> BTC-USD</a
+          >
+          <a
+            class="dropdown-item currency-option"
+            data-symbol="¥"
+            data-placeholder="0"
+            data-code="JPY"
+            href="#BTC-JPY"
+            ><i class="fab fa-bitcoin"></i> BTC-JPY</a
+          >
+          <a
+            class="dropdown-item currency-option"
+            data-symbol="$"
+            data-placeholder="0.00"
+            data-code="CAD"
+            href="#BTC-CAD"
+            ><i class="fab fa-bitcoin"></i> BTC-CAD</a
+          >
+          <a
+            class="dropdown-item currency-option"
+            data-symbol="$"
+            data-placeholder="0.00"
+            data-code="AUD"
+            href="#BTC-AUD"
+            ><i class="fab fa-bitcoin"></i> BTC-AUD</a
+          >
+        </div>
+      </div>
+      <div id="summary" class="col-9 d-flex section align-items-center">
+        <div class="flex-item">
+          <p class="display-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+            optio mollitia quia officia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flex-container text-center">
+  <div class="flex-row d-flex">
+    <div id="account-view" class="col-3">
+      <div class="flex-row d-flex section py-5">
+        <div class="col-12">
+          <div class="flex-row d-flex justify-content-center">
+            <div class="flex-item"><p>Start trading...</p></div>
+          </div>
+          <div class="flex-row d-flex justify-content-center">
+            <div class="flex-item">
+              <button type="button" class="btn btn-info">
+                Get started
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row d-flex section">
+        <p class="display-4">Order Form</p>
+      </div>
+      <div class="flex-row d-flex justify-content-center mt-3">
+        <div id="buy-sell-btns">
+          <button
+            id="buy-form-btn"
+            type="button"
+            data-order-type="buy"
+            class="btn mr-0 py-1 px-5"
+            href="#buy"
+          >
+            BUY
+          </button>
+          <button
+            id="sell-form-btn"
+            type="button"
+            data-order-type="sell"
+            class="btn ml-0 py-1 px-5"
+            href="#sell"
+          >
+            SELL
+          </button>
+        </div>
+      </div>
+      <div class="flex-row d-flex justify-content-center mt-3">
+        <nav class="navbar navbar-dark navbar-expand no-padding">
+          <div id="order-form-links">
+            <ul class="navbar-nav multi-select">
+              <li class="nav-item active">
+                <a href="#market" class="nav-link">Market</a>
+              </li>
+              <li class="nav-item">
+                <a href="#limit" class="nav-link">Limit</a>
+              </li>
+              <li class="nav-item">
+                <a href="#stop" class="nav-link">Stop</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="flex-row d-flex justify-content-center text-left my-3">
+        <form name="order-form" id="order-form" action="javascript:placeOrder();">
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            class="form-control currency-amount"
+            name="quantity"
+            placeholder="0"
+            required
+            min="1"
+          />
+          <label for="price">Price</label>
+          <div class="input-group rounded">
+            <div
+              class="input-group-addon currency-symbol align-self-center"
+            >
+              £
+            </div>
+            <input
+              type="number"
+              class="form-control currency-amount"
+              name="price"
+              placeholder="0.00"
+              min="1"
+              required
+            />
+            <div
+              class="input-group-addon currency-addon-fixed currency-code align-self-center"
+            >
+              GBP
+            </div>
+          </div>
+          <hr color="slategrey" />
+          <div class="flex-row d-flex justify-content-center text-left">
+            <div class="flex-item col-4"><p>Fee ≈</p></div>
+            <div class="flex-item col-8 text-right">
+              <p>
+                <span class="currency-symbol">£</span>
+                <span class="currency-amount">0.00</span>
+              </p>
+            </div>
+          </div>
+          <div class="flex-row d-flex justify-content-center text-left">
+            <div class="flex-item col-4"><p>Total ≈</p></div>
+            <div class="flex-item col-8 text-right">
+              <p>
+                <span class="currency-symbol text-right">£</span>
+                <span class="currency-amount text-right">0.00</span>
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex-row d-flex justify-content-center text-left mt-5"
+          >
+            <button id="order-btn" type="submit" class="btn">
+              Place <span class="order-type">buy</span> order
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="trade-view" class="col-9 no-padding">
+      <div class="flex-row bottom-border d-flex align-items-center">
+        <div id="order-book-header" class="col-12">
+          <nav
+            id="order-book-nav"
+            class="navbar navbar-dark navbar-expand no-padding"
+          >
+            <a href="#" class="navbar-brand">Order Book</a>
+            <div id="order-book-links">
+              <ul class="navbar-nav multi-select">
+                <li class="nav-item active">
+                  <a href="#book" class="nav-link">Orders</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#history" class="nav-link">Trade History</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="flex-row bottom-border d-flex align-items-center mt-4">
+        <div class="col-6 flex-item">
+          <p class="display-4">
+            Open <span class="buy-indicated">buy</span> orders
+          </p>
+          <% include partials/table/buyers %>
+        </div>
+        <div class="col-6 flex-item">
+          <p class="display-4">
+            Open <span class="sell-indicated">sell</span> orders
+          </p>
+          <% include partials/table/sellers %>
+        </div>
+      </div>
+      <div class="flex-row bottom-border d-flex">
+        <div class="col-12"><p class="display-4">Your Orders</p></div>
+      </div>
+      <div class="flex-row d-flex">
+        <div class="col-12 flex-item">          
+        <% include partials/table/trades %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% include partials/footer %>

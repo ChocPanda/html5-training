@@ -1,0 +1,25 @@
+
+<table
+  id="account-orders-table"
+  class="table table-striped"
+  width="100%"
+>
+  <thead>
+    <tr>
+      <th>Buyer</th>
+      <th>Seller</th>
+      <th>Price (<span class="currency-code">GBP</span>)</th>
+      <th>Quantity<th>
+    </tr>
+  </thead>
+  <tbody>  
+    <% trades.forEach (trade => { %>
+      <tr>
+        <td><%= trade.buyerAccount %></td>
+        <td><%= trade.sellerAccount %></td>
+        <td><span class="currency-symbol">£</span><%= trade.price %></td>
+        <td><%= trade.quantityTraded %></td>
+      </tr>
+    <%});%>
+  </tbody>
+</table>

@@ -1,5 +1,5 @@
-const updateSymbol = () => {
-  $(".currency-symbol").text(this.getAttribute("data-symbol"));
+const updateSymbol = caller => {
+  $(".currency-symbol").text($(caller).getAttribute("data-symbol"));
   $(".currency-amount").prop(
     "placeholder",
     this.getAttribute("data-placeholder")

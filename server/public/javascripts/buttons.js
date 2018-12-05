@@ -23,7 +23,7 @@ const Action = {
 function placeOrder(e) {
 
   var formData = new FormData($("#order-form")[0]);
-  formData.append("accountId", "1");
+  formData.append("account", "1");
 
   if ($("#order-btn").hasClass("buy-btn")) {
     console.debug("Sending a BUY order");
@@ -37,9 +37,9 @@ function placeOrder(e) {
     );
   }
 
-  var request = new XMLHttpRequest();
-  request.open("POST", "order");
-  request.send(formData);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/order");
+  xhr.send(formData);
 }
 
 $("#buy-sell-btns button").on("click", toggleOrderType);

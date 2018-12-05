@@ -1,0 +1,23 @@
+
+<table
+id="sell-orders-table"
+class="table table-striped"
+width="100%"
+>
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% sellOrders.forEach (order => { %>
+    <tr>
+      <td class="sell-indicated">
+        - <span class="currency-symbol">£</span><%= order.price %>
+      </td>
+      <td><%= order.quantity %></td>
+    </tr>
+  <% }); %>
+  </tbody>
+</table>

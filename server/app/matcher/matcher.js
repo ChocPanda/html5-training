@@ -1,7 +1,7 @@
 'use strict';
 
-const { _, createTrade, Action } = require("../orders/order");
-const { sortBuyers, sortSellers } = require("../orders/orderComparator")
+const { _, __, createTrade, Action } = require("../orders/order");
+const { compareBuyers, compareSellers } = require("../orders/orderComparator")
 
 class Matcher {
     constructor(existingOrders = []) {
@@ -26,11 +26,11 @@ class Matcher {
     }
 
     get unmatchedBuyers() {
-        return this._unmatchedBuyers.slice().sort(sortBuyers)
+        return this._unmatchedBuyers.slice().sort(compareBuyers)
     }
 
     get unmatchedSellers() {
-        return this._unmatchedSellers.slice().sort(sortSellers)
+        return this._unmatchedSellers.slice().sort(compareSellers)
     }
 
     get trades() {
@@ -64,7 +64,7 @@ class Matcher {
                 }
                 break;
             default:
-                throw new Error("Unrecognized action")
+                console.error(`Unrecognized action ${JSON.stringify(newOrder)}`);
         }
 
         return this;
@@ -100,6 +100,7 @@ class Matcher {
 
             if (seller.quantity > 0 && seller.price <= buy.price) {
                 const trade = createTrade(buy, seller)
+                console.log(`Created new trade: ${JSON.stringify(trade)}`)
                 trades.push(trade);
 
                 clonedBuy.quantity  -= trade.quantityTraded
