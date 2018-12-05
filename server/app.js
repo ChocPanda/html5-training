@@ -15,6 +15,8 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 app.use(express.static("partials"));
 
+app.set('view engine', 'ejs');
+
 const matcher = new Matcher()
 
 routes(app, matcher);

@@ -20,27 +20,23 @@ const Action = {
   SELL: 2
 };
 
-function placeOrder(e) {
-
-  var formData = new FormData($("#order-form")[0]);
-  formData.append("account", "1");
+$("#order-form").submit(() => {
+  $("#order-form").append('<input type="hidden" name="account" value="1"/>')
 
   if ($("#order-btn").hasClass("buy-btn")) {
     console.debug("Sending a BUY order");
-    formData.append("action", Action.BUY);
+    $("#order-form").append(`<input type="hidden" name="action" value="${Action.BUY}"/>`)
   } else if ($("#order-btn").hasClass("sell-btn")) {
     console.debug("Sending a SELL order");
-    formData.append("action", Action.SELL);
+    $("#order-form").append(`<input type="hidden" name="action" value="${Action.SELL}"/>`)
   } else {
     console.error(
       "Well this is just unexpected to be honest... but I don't know what to do"
     );
   }
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/order");
-  xhr.send(formData);
-}
+  return true;
+});
 
 $("#buy-sell-btns button").on("click", toggleOrderType);
 
