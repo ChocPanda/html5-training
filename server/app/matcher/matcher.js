@@ -1,119 +1,105 @@
-'use strict';
+"use strict";
 
-const { _, __, createTrade, Action } = require("../orders/order");
-const { compareBuyers, compareSellers } = require("../orders/orderComparator")
+const { createTrade } = require("../orders/order");
+const Action = require("../orders/action");
+const { compareBuyers, compareSellers } = require("../orders/orderComparator");
+
+// const add = ()
 
 class Matcher {
-    constructor(existingOrders = []) {
-        this._trades = []
+  constructor(existingOrders = []) {
+    this._trades = [];
+    this._unmatchedBuyers = [];
+    this._unmatchedSellers = [];
+    this.add = this.add.bind(this);
 
-        const [sellers, buyers] =
-            existingOrders
-                .reduce((result, trade) => {
-                        result[trade.action === Action.SELL ? 0 : 1].push(trade);
-                        return result;
-                    }, [ [], [] ]);
+    existingOrders.forEach(this.add);
+  }
 
-        if (sellers.length > buyers.length) {
-            this._unmatchedBuyers = []
-            this._unmatchedSellers = sellers
-            buyers.forEach(b => this.add(b));
-        } else {
-            this._unmatchedSellers = []
-            this._unmatchedBuyers = buyers
-            sellers.forEach(s => this.add(s));
-        }
-    }
+  get unmatchedBuyers() {
+    return this._unmatchedBuyers.slice().sort(compareBuyers);
+  }
 
-    get unmatchedBuyers() {
-        return this._unmatchedBuyers.slice().sort(compareBuyers)
-    }
+  get unmatchedSellers() {
+    return this._unmatchedSellers.slice().sort(compareSellers);
+  }
 
-    get unmatchedSellers() {
-        return this._unmatchedSellers.slice().sort(compareSellers)
-    }
+  get trades() {
+    return this._trades.slice();
+  }
 
-    get trades() {
-        return this._trades.slice()
-    }
+  _add(potentialPartners, order, createTrade, isViable) {
+    const [newTrades, newUnmatchedItems] = potentialPartners.reduce(
+      ([trades, accUnmatched], potentialPartner) => {
+        if (order.quantity > 0 && isViable(potentialPartner)) {
+          const trade = createTrade(potentialPartner);
+          trades.push(trade);
 
-    add(newOrder) {
-        const clonedOrder = {
-            ...newOrder,
+          potentialPartner.quantity -= trade.quantityTraded;
+          order.quantity -= trade.quantityTraded;
         }
 
-        switch(newOrder.action) {
-            case Action.BUY:
-                const [ newBuys, newUnmatchedSellers ] = this.calcTradesWithNewBuyer(clonedOrder)
-
-                this._trades = this._trades.concat(newBuys)
-                this._unmatchedSellers = newUnmatchedSellers
-
-                if (clonedOrder.quantity > 0) {
-                    this._unmatchedBuyers.push(clonedOrder);
-                }
-                break;
-            case Action.SELL:
-                const [ newSales, newUnmatchedBuyers ] = this.calcTradesWithNewSeller(clonedOrder)
-
-                this._trades = this._trades.concat(newSales)
-                this._unmatchedBuyers = newUnmatchedBuyers
-
-                if (clonedOrder.quantity > 0) {
-                    this._unmatchedSellers.push(clonedOrder);
-                }
-                break;
-            default:
-                console.error(`Unrecognized action ${JSON.stringify(newOrder)}`);
+        if (potentialPartner.quantity > 0) {
+          accUnmatched.push(potentialPartner);
         }
 
-        return this;
+        return [trades, accUnmatched];
+      },
+      [[], []]
+    );
+
+    return [newTrades, newUnmatchedItems];
+  }
+
+  _addSeller(order) {
+    const [newTrades, newUnmatchedBuyers] = this._add(
+      this.unmatchedBuyers,
+      order,
+      sell => createTrade(order, sell),
+      existingOrder => order.price <= existingOrder.price
+    );
+
+    if (order.quantity > 0) {
+        this._unmatchedSellers.push(order);
     }
 
-    calcTradesWithNewBuyer(buyer) {
-        return this.unmatchedSellers.reduce(([ trades, unmatchedSellers] , sell) => {                    
-            const clonedSell = {
-                ...sell,
-            }
+    this._unmatchedBuyers = newUnmatchedBuyers
+    this._trades = this._trades.concat(newTrades);
+  }
 
-            if (buyer.quantity > 0 && buyer.price >= sell.price) {
-                const trade = createTrade(buyer, sell)
-                trades.push(trade);
+  _addBuyer(order) {
+    const [newTrades, newUnmatchedSellers] = this._add(
+      this.unmatchedSellers,
+      order,
+      buy => createTrade(buy, order),
+      existingOrder => order.price >= existingOrder.price
+    );
 
-                clonedSell.quantity -= trade.quantityTraded;
-                buyer.quantity      -= trade.quantityTraded;
-            }
-            
-            if (clonedSell.quantity > 0) {
-                unmatchedSellers.push(clonedSell);
-            }
-
-            return [trades, unmatchedSellers];
-        }, [ [], [] ]);
+    if (order.quantity > 0) {
+        this._unmatchedBuyers.push(order);
     }
 
-    calcTradesWithNewSeller(seller) {
-        return this.unmatchedBuyers.reduce(([ trades, unmatchedBuyers ], buy) => {
-            const clonedBuy = {
-                ...buy,
-            }
+    this._unmatchedSellers = newUnmatchedSellers
+    this._trades = this._trades.concat(newTrades);
+  }
 
-            if (seller.quantity > 0 && seller.price <= buy.price) {
-                const trade = createTrade(buy, seller)
-                console.log(`Created new trade: ${JSON.stringify(trade)}`)
-                trades.push(trade);
-
-                clonedBuy.quantity  -= trade.quantityTraded
-                seller.quantity     -= trade.quantityTraded
-            }
-
-            if (clonedBuy.quantity > 0) {
-                unmatchedBuyers.push(clonedBuy)
-            }
-            
-            return [ trades, unmatchedBuyers ]
-        }, [ [], [] ]);
+  add(newOrder) {
+    const order = {
+      ...newOrder
+    };
+    switch (newOrder.action) {
+      case Action.BUY:
+        this._addBuyer(order);
+        break;
+      case Action.SELL:
+        this._addSeller(order);
+        break;
+      default:
+        console.error(`Unrecognized action ${JSON.stringify(newOrder)}`);
     }
+
+    return this;
+  }
 }
 
 module.exports = Matcher;

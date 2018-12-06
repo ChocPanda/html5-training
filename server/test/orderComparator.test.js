@@ -1,6 +1,7 @@
 'use strict';
 
-const { createOrder, _, __, Action } = require("../app/orders/order");
+const { createOrder, _, __ } = require("../app/orders/order");
+const Action = require("../app/orders/action");
 const { compareBuyers, compareSellers } = require("../app/orders/orderComparator")
 const moment = require("moment");
 

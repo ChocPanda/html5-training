@@ -1,7 +1,8 @@
 "use strict";
 
+const { createOrder, _, createTrade } = require("../app/orders/order");
+const Action = require("../app/orders/action");
 const Matcher = require("../app/matcher/matcher");
-const { createOrder, _, createTrade, Action } = require("../app/orders/order");
 
 describe("Matcher", () => {
   test("Initialise to an empty set of orders", () => {
