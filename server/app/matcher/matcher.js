@@ -55,7 +55,7 @@ class Matcher {
     const [newTrades, newUnmatchedBuyers] = this._add(
       this.unmatchedBuyers,
       order,
-      sell => createTrade(order, sell),
+      buyer => createTrade(buyer, order),
       existingOrder => order.price <= existingOrder.price
     );
 
@@ -71,7 +71,7 @@ class Matcher {
     const [newTrades, newUnmatchedSellers] = this._add(
       this.unmatchedSellers,
       order,
-      buy => createTrade(buy, order),
+      seller => createTrade(order, seller),
       existingOrder => order.price >= existingOrder.price
     );
 
