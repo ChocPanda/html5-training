@@ -9,3 +9,5 @@ const createOrderBook = (accountId, matcher) => ({
     trade.buyerAccount === accountId || trade.sellerAccount === accountId;
   })
 });
+
+module.exports = createOrderBook

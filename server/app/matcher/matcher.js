@@ -28,12 +28,13 @@ class Matcher {
     return this._trades.slice();
   }
 
+  // Pure
   _add(potentialPartners, order, createTrade, isViable) {
     const [newTrades, newUnmatchedItems] = potentialPartners.reduce(
-      ([trades, accUnmatched], potentialPartner) => {
+      ([accTrades, accUnmatched], potentialPartner) => {
         if (order.quantity > 0 && isViable(potentialPartner)) {
           const trade = createTrade(potentialPartner);
-          trades.push(trade);
+          accTrades.push(trade);
 
           potentialPartner.quantity -= trade.quantityTraded;
           order.quantity -= trade.quantityTraded;
@@ -43,7 +44,7 @@ class Matcher {
           accUnmatched.push(potentialPartner);
         }
 
-        return [trades, accUnmatched];
+        return [accTrades, accUnmatched];
       },
       [[], []]
     );
@@ -51,6 +52,7 @@ class Matcher {
     return [newTrades, newUnmatchedItems];
   }
 
+  // Side effecting
   _addSeller(order) {
     const [newTrades, newUnmatchedBuyers] = this._add(
       this.unmatchedBuyers,
@@ -59,14 +61,16 @@ class Matcher {
       existingOrder => order.price <= existingOrder.price
     );
 
-    if (order.quantity > 0) {
-        this._unmatchedSellers.push(order);
-    }
-
     this._unmatchedBuyers = newUnmatchedBuyers
     this._trades = this._trades.concat(newTrades);
+
+    if (order.quantity > 0) {
+      console.log("pushing", order)
+        this._unmatchedSellers.push(order);
+    }
   }
 
+  // Side effecting
   _addBuyer(order) {
     const [newTrades, newUnmatchedSellers] = this._add(
       this.unmatchedSellers,
@@ -75,14 +79,15 @@ class Matcher {
       existingOrder => order.price >= existingOrder.price
     );
 
+    this._unmatchedSellers = newUnmatchedSellers
+    this._trades = this._trades.concat(newTrades);
+
     if (order.quantity > 0) {
         this._unmatchedBuyers.push(order);
     }
-
-    this._unmatchedSellers = newUnmatchedSellers
-    this._trades = this._trades.concat(newTrades);
   }
 
+  // Side effecting
   add(newOrder) {
     const order = {
       ...newOrder

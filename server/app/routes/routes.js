@@ -1,7 +1,7 @@
 "use strict";
 
 const { normalizeOrder } = require("../orders/order");
-const { createOrderBook } = require("../orders/orderBook");
+const createOrderBook = require("../orders/orderBook");
 
 const appRouter = (app, matcher) => {
 
@@ -32,7 +32,7 @@ const appRouter = (app, matcher) => {
     const accountId = req.params.id
     const orderBook = createOrderBook(accountId, matcher)
 
-    res.send(matcher.trades);
+    res.send(orderBook.trades);
   });
 
   app.get("/orders", (_, res) => {
@@ -43,7 +43,7 @@ const appRouter = (app, matcher) => {
     const accountId = req.params.id
     const orderBook = createOrderBook(accountId, matcher)
 
-    res.send(orderBook .unmatchedBuyers.concat(matcher.unmatchedSellers));
+    res.send(orderBook.unmatchedBuyers.concat(matcher.unmatchedSellers));
   });
 
   app.get("/orders/:action/:id", (_, res) => {

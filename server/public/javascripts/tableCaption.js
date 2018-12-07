@@ -8,7 +8,6 @@ const updateTableCaption = tableId => {
   }
 };
 
-$("table").each((index, element) => {
-  $(element.id).on("change", () => updateTableCaption(element.id));
-  updateTableCaption(element.id);
+$(".table").each((_, table) => {
+  console.log(table)
 });

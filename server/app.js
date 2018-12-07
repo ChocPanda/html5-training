@@ -6,12 +6,12 @@ const app = express();
 const bodyParser = require("body-parser");
 const routes = require("./app/routes/routes");
 const Matcher = require("./app/matcher/matcher");
-const Action = require("./app/orders/action")
+const Action = require("./app/orders/action");
 const { createOrder, ..._ } = require("./app/orders/order");
 
 const morgan = require("morgan");
 const faker = require("faker");
-const moment = require("moment")
+const moment = require("moment");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,20 +22,21 @@ app.use(express.static("partials"));
 
 app.set("view engine", "ejs");
 
-const randomOrder = action => createOrder(
-    Math.floor(Math.random() * 10),
-    faker.finance.amount,
-    faker.random.number,
+const randomOrder = action =>
+  createOrder(
+    faker.random.number({min: 0, max: 10, precision: 1}).toString(),
+    faker.finance.amount(),
+    faker.random.number({min: 0, max: 10000, precision: 1}),
     action,
     moment().subtract(faker.random.number, "minutes")
   );
 
-const fakeBuyOrders = Array.from({ length: 10 }, _ => {
-  return randomOrder(Action.BUY)
+const fakeBuyOrders = Array.from({ length: 50 }, _ => {
+  return randomOrder(Action.BUY);
 });
 
 const fakeSellOrders = Array.from({ length: 50 }, _ => {
-  return randomOrder(Action.SELL)
+  return randomOrder(Action.SELL);
 });
 
 const matcher = new Matcher(fakeBuyOrders.concat(fakeSellOrders));
