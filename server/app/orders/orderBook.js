@@ -6,7 +6,7 @@ const createOrderBook = (accountId, matcher) => ({
     o => o.account === accountId
   ),
   trades: matcher.trades.filter(trade => {
-    trade.buyerAccount === accountId || trade.sellerAccount === accountId;
+    return trade.buyerAccount === accountId || trade.sellerAccount === accountId;
   })
 });
 

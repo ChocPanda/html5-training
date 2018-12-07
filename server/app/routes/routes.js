@@ -16,7 +16,7 @@ const appRouter = (app, matcher) => {
   app.get("/:id", (req, res) => {
     const accountId = req.params.id
     const orderBook = createOrderBook(accountId, matcher)
-
+console.log(orderBook)
     res.render("mockup.ejs", {
       buyOrders: orderBook.unmatchedBuyers,
       sellOrders: orderBook.unmatchedSellers,

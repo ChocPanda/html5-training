@@ -65,7 +65,6 @@ class Matcher {
     this._trades = this._trades.concat(newTrades);
 
     if (order.quantity > 0) {
-      console.log("pushing", order)
         this._unmatchedSellers.push(order);
     }
   }
