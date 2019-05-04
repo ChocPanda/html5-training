@@ -1,4 +1,7 @@
 # bitcoin-exchange-seed
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/ChocPanda/html5-training.svg)](https://greenkeeper.io/)
+
 The starting point for the bitcoin-exchange project, containing individual client and server applications.
 Each application has their own package.json, to prevent cross-pollination of dependencies between client and server-side.
 
