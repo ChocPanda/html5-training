@@ -14,7 +14,7 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "jest": "^22.3.0"
+    "jest": "^24.7.1"
   },
   "scripts": {
     "test": "jest",
